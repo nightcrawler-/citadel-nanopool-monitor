@@ -4,3 +4,10 @@
 - [ ] Donate monero option to remove ads..*
 - [ ] Specify currency explicity? or go though all endpoints and try get a match?
 - [ ] Code name: Citadel, conve mvvm, with hilt. no local backing initially
+
+# Leg 1 ~ 2am
+[ ] Home page -- empty - please add wallet by scanning or enter
+[ ] QR code scan
+[ ] Hit API - MVVM with repository and retrofit
+[ ] Splash screen
+[ ] Lottie empty placeholder
