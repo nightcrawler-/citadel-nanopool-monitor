@@ -11,3 +11,11 @@
 [ ] Hit API - MVVM with repository and retrofit
 [ ] Splash screen
 [ ] Lottie empty placeholder
+
+# Initial Publish checklist
+[ ] App icons
+[ ] Theme colors
+[ ] Splash screen
+[ ] Format numbers - 6dp, fot one line
+[ ] App name
+
