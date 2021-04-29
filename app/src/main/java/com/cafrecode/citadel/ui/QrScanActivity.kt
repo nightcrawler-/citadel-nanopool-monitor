@@ -10,6 +10,7 @@ import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.cafrecode.citadel.databinding.ActivityQrScanBinding
+import com.cafrecode.citadel.ui.home.HomeFragment
 
 class QrScanActivity : AppCompatActivity() {
 

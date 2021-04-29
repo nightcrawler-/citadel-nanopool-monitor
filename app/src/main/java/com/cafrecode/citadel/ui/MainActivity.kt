@@ -1,4 +1,4 @@
-package com.cafrecode.citadel
+package com.cafrecode.citadel.ui
 
 import android.Manifest
 import android.content.Context
@@ -16,10 +16,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.cafrecode.citadel.R
 import com.cafrecode.citadel.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
