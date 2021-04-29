@@ -19,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.cafrecode.citadel.R
 import com.cafrecode.citadel.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
@@ -27,8 +28,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var mFirebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
