@@ -6,16 +6,23 @@
 - [ ] Code name: Citadel, conve mvvm, with hilt. no local backing initially
 
 # Leg 1 ~ 2am
-[ ] Home page -- empty - please add wallet by scanning or enter
-[ ] QR code scan
-[ ] Hit API - MVVM with repository and retrofit
-[ ] Splash screen
-[ ] Lottie empty placeholder
+[x] Home page -- empty - please add wallet by scanning or enter
+[x] QR code scan
+[x] Hit API - MVVM with repository and retrofit
+[x] Splash screen
+[x] Lottie empty placeholder
 
 # Initial Publish checklist
-[ ] App icons
-[ ] Theme colors
-[ ] Splash screen
-[ ] Format numbers - 6dp, fot one line
-[ ] App name
+[x] App icons
+[x] Theme colors
+[x] Splash screen
+[x] Format numbers - 6dp, fot one line
+[x] App name
+
+# Leg 2
+[ ] Refine home - different icons for each of three main, diff color tints
+[ ] Continuous scroll (who slcreen, no app bar)
+[ ] monero icon.animation at top to now where you are
+[ ] About screen with donation QR
+[ ] Dashboard, thinka bout stats
 
