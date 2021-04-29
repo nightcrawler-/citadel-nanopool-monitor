@@ -35,13 +35,10 @@ class QrScanActivity : AppCompatActivity() {
 
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
-            codeScanner.stopPreview()
-            codeScanner.releaseResources()
 
             runOnUiThread {
                 Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_SHORT).show()
                 closeScannerAndBack(it.text)
-
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
@@ -52,18 +49,16 @@ class QrScanActivity : AppCompatActivity() {
                 ).show()
             }
         }
-
         binding.scannerView.setOnClickListener {
             codeScanner.startPreview()
         }
     }
 
-    private fun closeScannerAndBack(data: String) {
-        val data = Intent()
-        data.putExtra(HomeFragment.WALLET_ADDRESS, data)
-        setResult(RESULT_OK, data)
-
-        this.finish();
+    private fun closeScannerAndBack(walletAddress: String) {
+        val intent = Intent()
+        intent.putExtra(HomeFragment.WALLET_ADDRESS, walletAddress)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     override fun onResume() {

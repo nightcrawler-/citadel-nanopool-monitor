@@ -32,12 +32,11 @@ class HomeFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 //Get the wallet address and do with it what you need
-                Log.i(TAG, "Wallet address is: " + data?.getStringExtra("WALLET_ADDRESS"))
+                Log.i(TAG, "Wallet address is: " + data?.getStringExtra(WALLET_ADDRESS))
             }
-            //This is the result you need
         }
     }
 
@@ -48,21 +47,3 @@ class HomeFragment : Fragment() {
         const val WALLET_ADDRESS = "wallet_address"
     }
 }
-
-// Intent data = new Intent();
-// String text = "Result to be returned...."
-// //---set the data to pass back---
-// data.setData(Uri.parse(text));
-// setResult(RESULT_OK, data);
-// //---close the activity---
-// finish();
-//
-// fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-//     if (requestCode == request_Code) {
-//         if (resultCode == RESULT_OK) {
-//             val returnedResult = data.data.toString()
-//             // OR
-//             // String returnedResult = data.getDataString();
-//         }
-//     }
-// }
