@@ -4,15 +4,13 @@
 
     <data>
 
-        <import type="String"></import>
-
         <variable
             name="title"
-            type="String" />
+            type="java.lang.String" />
 
         <variable
             name="value"
-            type="String" />
+            type="java.lang.String" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -47,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="@color/mcLightGray"
-                    android:text="BALANCE" />
+                    android:text='@{title}' />
 
             </LinearLayout>
 
@@ -56,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/large_text"
-                android:text="0.0044455 XMR" />
+                android:text='@{value}' />
         </RelativeLayout>
 
     </LinearLayout>

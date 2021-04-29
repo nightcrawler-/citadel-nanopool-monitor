@@ -13,6 +13,8 @@ import com.cafrecode.citadel.databinding.FragmentHomeBinding
 import com.cafrecode.citadel.ui.QrScanActivity
 import com.cafrecode.citadel.utils.SharedPrefsUtil
 import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
+import com.cafrecode.citadel.vo.responses.core.balance
+import com.cafrecode.citadel.vo.responses.core.hashrate
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +36,15 @@ class HomeFragment : Fragment() {
                 Intent(requireActivity(), QrScanActivity::class.java),
                 REQUEST_CODE
             )
+        }
+
+        if (SharedPrefsUtil.getDefaultAddress(requireActivity()).isNullOrEmpty()) {
+            binding.empty.visibility = View.VISIBLE
+            binding.content.visibility = View.GONE
+        } else {
+            binding.empty.visibility = View.GONE
+            binding.content.visibility = View.VISIBLE
+            loadStats(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
         }
         return binding.root
     }
@@ -62,6 +73,7 @@ class HomeFragment : Fragment() {
                 if (it.body.status) {//status is true/false
                     Log.i(TAG, "Found account" + it.body.data)
                     SharedPrefsUtil.setDefaultAddress(requireActivity(), cleanAddress)
+                    loadStats(cleanAddress)
                     //we found your account, cache it on shared prefs for later
                 } else {
                     Snackbar.make(binding.root, "Failed: " + it.body.data, Snackbar.LENGTH_LONG)
@@ -69,6 +81,34 @@ class HomeFragment : Fragment() {
                 }
             }
 
+        })
+    }
+
+    //TODO: This should be cleaner, with co-routines etc?
+    private fun loadStats(address: String) {
+        //Hackity. Refine flow later
+        binding.empty.visibility = View.GONE
+        binding.content.visibility = View.VISIBLE
+
+        //Balance
+        viewModel.accountBalance(address).observe(viewLifecycleOwner, {
+            if (it is ApiSuccessResponse) {
+                binding.balance = it.body.balance()
+            }
+        })
+
+        //Hashrate
+        viewModel.currentHashrate(address).observe(viewLifecycleOwner, {
+            if (it is ApiSuccessResponse) {
+                binding.hashrate = it.body.hashrate()
+            }
+        })
+
+        //Avg. Hashrate
+        viewModel.averageHashrate(address, 6).observe(viewLifecycleOwner, {
+            if (it is ApiSuccessResponse) {
+                binding.hashrate = it.body.hashrate()
+            }
         })
     }
 
