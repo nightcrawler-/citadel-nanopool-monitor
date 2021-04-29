@@ -10,14 +10,12 @@
     tools:context=".ui.SplashActivity">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_margin="@dimen/large_margin"
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_height="120dp"
+        android:layout_weight="1"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_colorFilter="@color/colorAccent"
         app:lottie_speed="0.5"
         app:lottie_rawRes="@raw/splash" />
 

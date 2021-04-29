@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_your_wallet_address_to_monitor_the_pool_performance">Add your wallet address to monitor the pool performance</string>
     <string name="proceed">Continue</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>

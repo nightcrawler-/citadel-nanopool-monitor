@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // No wallet is registered in, so wait for click
-        if (SharedPrefsUtil.getDefaultAddress(this) == null) {
+        if (SharedPrefsUtil.getDefaultAddress(this).isNullOrEmpty()) {
             binding.proceedButton.setOnClickListener {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
