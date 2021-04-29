@@ -9,4 +9,10 @@ class CitadelRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) {
     fun accountExists(address: String) = service.accountExists(address)
+
+    fun accountBalance(address: String) = service.accountBalance(address)
+
+    fun currentHashrate(address: String) = service.currentHashrate(address)
+
+    fun averageHashrate(address: String, hours: Int) = service.averageHashrate(address, hours)
 }
