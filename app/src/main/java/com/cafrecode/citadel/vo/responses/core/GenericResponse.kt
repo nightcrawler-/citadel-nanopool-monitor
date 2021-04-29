@@ -10,5 +10,5 @@ fun GenericResponse.balance(): String {
 }
 
 fun GenericResponse.hashrate(): String {
-    return String.format("%.6f H/s", this.data.toFloat())
+    return String.format("%.1f H/s", this.data.toFloat())
 }
