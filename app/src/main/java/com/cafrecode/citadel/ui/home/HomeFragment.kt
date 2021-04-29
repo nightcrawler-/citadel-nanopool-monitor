@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.cafrecode.citadel.databinding.FragmentHomeBinding
 import com.cafrecode.citadel.ui.QrScanActivity
+import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,8 +51,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkAccount(address: String) {
+        //Sanitize address hrere - monero etc?
+        //TODO Refine:
+        val address = address.replace("monero:", "")
+
         viewModel.accountExists(address).observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "ApiResponse: $it")
+
+            if (it is ApiSuccessResponse) {
+                if (it.body.status) {//status is true/false
+                    Log.i(TAG, "Found account" + it.body.data)
+                    //we found your account, cache it on shared prefs for later
+                } else {
+                    Snackbar.make(binding.root, "Failed: " + it.body.data, Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
 
         })
     }
