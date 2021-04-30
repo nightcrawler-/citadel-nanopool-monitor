@@ -22,4 +22,6 @@ class HomeViewModel @Inject constructor(private val repo: CitadelRepository) :
     fun generalInfo(address: String) = repo.generalInfo(address)
 
     fun prices() = repo.prices()
+
+    fun account(address: String) = repo.account(address)
 }

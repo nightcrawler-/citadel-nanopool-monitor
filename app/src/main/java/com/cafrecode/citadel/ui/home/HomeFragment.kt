@@ -17,6 +17,7 @@ import com.cafrecode.citadel.vo.responses.core.ApiErrorResponse
 import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
 import com.cafrecode.citadel.vo.responses.core.GeneralData
 import com.cafrecode.citadel.vo.responses.core.currencyFormat
+import com.cafrecode.citadel.vo.responses.core.currencyFormatShort
 import com.cafrecode.citadel.vo.responses.core.hashrateFormat
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -133,9 +134,9 @@ class HomeFragment : Fragment() {
         //Assumes both general info and currencies are loaded
         if (this::generalInfo.isInitialized && this::costInfo.isInitialized) {
             Log.d(TAG, "Cost Info: $costInfo")
-            binding.usd = (generalInfo.balance * costInfo.priceUsd).currencyFormat("USD")
-            binding.btc = (generalInfo.balance * costInfo.priceBtc).currencyFormat("BTC")
-            binding.local = (generalInfo.balance * costInfo.priceGbp).currencyFormat("GBP")
+            binding.usd = (generalInfo.balance * costInfo.priceUsd).currencyFormatShort("USD")
+            binding.btc = (generalInfo.balance * costInfo.priceBtc).currencyFormatShort("BTC")
+            binding.local = (generalInfo.balance * costInfo.priceGbp).currencyFormatShort("GBP")
         }
     }
 

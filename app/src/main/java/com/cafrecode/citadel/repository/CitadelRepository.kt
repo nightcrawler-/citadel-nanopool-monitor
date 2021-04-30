@@ -19,4 +19,6 @@ class CitadelRepository @Inject constructor(
     fun generalInfo(address: String) = service.generalInfo(address)
 
     fun prices() = service.prices()
+
+    fun account(address: String) = service.account(address)
 }

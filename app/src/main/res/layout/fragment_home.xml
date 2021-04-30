@@ -59,6 +59,8 @@
                         app:btc='@{btc}'
                         app:local='@{local}' />
 
+                    <include layout="@layout/page_item_remaining"/>
+
                     <include
                         layout="@layout/page_item_summary"
                         app:title='@{"Unconfirmed Balance"}'

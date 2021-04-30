@@ -29,4 +29,7 @@ interface CitadelService {
 
     @GET("prices")
     fun prices(): LiveData<ApiResponse<GeneralResponse>>
+
+    @GET("usersettings/{address}")
+    fun account(@Path("address") address: String):  LiveData<ApiResponse<GeneralResponse>>
 }
