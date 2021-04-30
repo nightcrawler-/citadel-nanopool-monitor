@@ -88,14 +88,19 @@ class HomeFragment : Fragment() {
     //TODO: This should be cleaner, with co-routines etc?
     private fun loadStats(address: String) {
         //Hackity. Refine flow later
+        // Do these things reactively
         binding.empty.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
 
         // Load loading icon?
+        binding.loading.visibility = View.VISIBLE
+        binding.results.visibility = View.GONE
+
         viewModel.generalInfo(address).observe(viewLifecycleOwner, {
 
             if (it is ApiSuccessResponse) {
                 //hide loading place holder
+                loadingSuccess()
                 binding.balance = it.body.data.balance.currencyFormat()
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
                 binding.avgHashrate = it.body.data.avgHashrate.hashrateFormat()
@@ -103,6 +108,11 @@ class HomeFragment : Fragment() {
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun loadingSuccess() {
+        binding.loading.visibility = View.GONE
+        binding.results.visibility = View.VISIBLE
     }
 
     companion object {

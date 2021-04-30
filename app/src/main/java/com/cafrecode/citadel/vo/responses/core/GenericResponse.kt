@@ -1,6 +1,8 @@
 package com.cafrecode.citadel.vo.responses.core
 
+import com.cafrecode.citadel.utils.CurrencyFormatUtil
 import com.google.gson.annotations.SerializedName
+import java.math.BigDecimal
 
 data class GenericResponse(val status: Boolean, val data: String)
 
@@ -31,5 +33,6 @@ fun Double.currencyFormat(): String {
 }
 
 fun Double.hashrateFormat(): String {
-    return String.format("%.1f H/s", this)
+    // Clearly not the best of names, refine
+    return CurrencyFormatUtil.formatSansPrefix(BigDecimal(this)) + " H/s"
 }
