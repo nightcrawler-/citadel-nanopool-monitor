@@ -19,6 +19,7 @@ import com.cafrecode.citadel.vo.responses.core.GeneralData
 import com.cafrecode.citadel.vo.responses.core.currencyFormat
 import com.cafrecode.citadel.vo.responses.core.currencyFormatShort
 import com.cafrecode.citadel.vo.responses.core.hashrateFormat
+import com.cafrecode.citadel.vo.responses.core.round
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -113,7 +114,9 @@ class HomeFragment : Fragment() {
                 binding.balance = it.body.data.balance.currencyFormat("XMR")
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
                 binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat("XMR")
+                //The two happen after info has been set. maybe find a cleaner way to do this
                 loadCurrencies()
+                fetchAccountInfo()
             } else if (it is ApiErrorResponse) {
                 Log.e(TAG, "Error: " + it.errorMessage)
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
@@ -130,6 +133,16 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun fetchAccountInfo() {
+        viewModel.account(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
+            .observe(viewLifecycleOwner, Observer {
+
+                if (it is ApiSuccessResponse) {
+                    loadLimitStatus(generalInfo, it.body.data)
+                }
+            })
+    }
+
     private fun setCurrencies() {
         //Assumes both general info and currencies are loaded
         if (this::generalInfo.isInitialized && this::costInfo.isInitialized) {
@@ -138,6 +151,13 @@ class HomeFragment : Fragment() {
             binding.btc = (generalInfo.balance * costInfo.priceBtc).currencyFormatShort("BTC")
             binding.local = (generalInfo.balance * costInfo.priceGbp).currencyFormatShort("GBP")
         }
+    }
+
+    private fun loadLimitStatus(info: GeneralData, account: GeneralData) {
+
+        val progress = (info.balance / account.payout * 100).toFloat()
+        binding.remaining.circleView.setValue(progress!!)
+        binding.remaining.circleView.setText(progress.round(2).toString())
     }
 
     companion object {

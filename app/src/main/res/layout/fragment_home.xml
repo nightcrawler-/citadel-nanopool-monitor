@@ -59,7 +59,9 @@
                         app:btc='@{btc}'
                         app:local='@{local}' />
 
-                    <include layout="@layout/page_item_remaining"/>
+                    <include
+                        android:id="@+id/remaining"
+                        layout="@layout/page_item_remaining"/>
 
                     <include
                         layout="@layout/page_item_summary"

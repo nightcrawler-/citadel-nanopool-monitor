@@ -3,6 +3,7 @@ package com.cafrecode.citadel.vo.responses.core
 import com.cafrecode.citadel.utils.CurrencyFormatUtil
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
+import kotlin.math.round
 
 data class GenericResponse(val status: Boolean, val data: String)
 
@@ -55,4 +56,10 @@ fun Double.currencyFormatShort(symbol: String): String {
 fun Double.hashrateFormat(): String {
     // Clearly not the best of names, refine
     return CurrencyFormatUtil.formatSansPrefix(BigDecimal(this)) + " H/s"
+}
+
+fun Float.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return round(this * multiplier) / multiplier
 }
