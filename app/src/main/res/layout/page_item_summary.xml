@@ -11,6 +11,7 @@
         <variable
             name="value"
             type="java.lang.String" />
+
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
