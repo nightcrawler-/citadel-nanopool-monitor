@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,6 +10,18 @@
 
         <variable
             name="value"
+            type="java.lang.String" />
+
+        <variable
+            name="usd"
+            type="java.lang.String" />
+
+        <variable
+            name="btc"
+            type="java.lang.String" />
+
+        <variable
+            name="local"
             type="java.lang.String" />
 
     </data>
@@ -51,11 +63,61 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_value"
                 android:layout_below="@+id/header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/large_text"
                 android:text='@{value}' />
+
+            <LinearLayout
+                android:layout_below="@id/tv_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_usd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/mcLightGray"
+                    android:layout_marginRight="@dimen/small_margin"
+                    app:visibleGone='@{usd !=null &amp;&amp; usd.length() > 0}'
+                    android:text='@{usd}' />
+
+                <TextView
+                    app:visibleGone='@{btc !=null &amp;&amp; btc.length() > 0}'
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_btc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:textColor="@color/mcLightGray"
+                    android:text='@{btc}' />
+
+                <TextView
+                    app:visibleGone='@{local !=null &amp;&amp; local.length() > 0}'
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:textColor="@color/mcLightGray"
+                    android:text='@{local}' />
+            </LinearLayout>
+
+
         </RelativeLayout>
 
     </LinearLayout>

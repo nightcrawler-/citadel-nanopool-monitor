@@ -9,13 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.cafrecode.citadel.databinding.FragmentHomeBinding
 import com.cafrecode.citadel.ui.QrScanActivity
 import com.cafrecode.citadel.utils.SharedPrefsUtil
 import com.cafrecode.citadel.vo.responses.core.ApiErrorResponse
 import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
+import com.cafrecode.citadel.vo.responses.core.GeneralData
 import com.cafrecode.citadel.vo.responses.core.currencyFormat
+import com.cafrecode.citadel.vo.responses.core.currencyFormatShort
 import com.cafrecode.citadel.vo.responses.core.hashrateFormat
+import com.cafrecode.citadel.vo.responses.core.round
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +29,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel: HomeViewModel by viewModels()
+
+    //Instance concerns
+    private lateinit var generalInfo: GeneralData
+    private lateinit var costInfo: GeneralData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +53,11 @@ class HomeFragment : Fragment() {
         } else {
             binding.empty.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
+            loadStats(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
+            binding.refresh.isRefreshing = true
+        }
+
+        binding.refresh.setOnRefreshListener {
             loadStats(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
         }
         return binding.root
@@ -92,18 +105,18 @@ class HomeFragment : Fragment() {
         binding.empty.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
 
-        // Load loading icon?
-        binding.loading.visibility = View.VISIBLE
-        binding.results.visibility = View.GONE
-
         viewModel.generalInfo(address).observe(viewLifecycleOwner, {
 
+            binding.refresh.isRefreshing = false
+
             if (it is ApiSuccessResponse) {
-                //hide loading place holder
-                loadingSuccess()
-                binding.balance = it.body.data.balance.currencyFormat()
+                generalInfo = it.body.data
+                binding.balance = it.body.data.balance.currencyFormat("XMR")
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
-                binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat()
+                binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat("XMR")
+                //The two happen after info has been set. maybe find a cleaner way to do this
+                loadCurrencies()
+                fetchAccountInfo()
             } else if (it is ApiErrorResponse) {
                 Log.e(TAG, "Error: " + it.errorMessage)
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
@@ -111,9 +124,40 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun loadingSuccess() {
-        binding.loading.visibility = View.GONE
-        binding.results.visibility = View.VISIBLE
+    private fun loadCurrencies() {
+        viewModel.prices().observe(viewLifecycleOwner, Observer {
+            if (it is ApiSuccessResponse) {
+                costInfo = it.body.data
+                setCurrencies()
+            }
+        })
+    }
+
+    private fun fetchAccountInfo() {
+        viewModel.account(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
+            .observe(viewLifecycleOwner, Observer {
+
+                if (it is ApiSuccessResponse) {
+                    loadLimitStatus(generalInfo, it.body.data)
+                }
+            })
+    }
+
+    private fun setCurrencies() {
+        //Assumes both general info and currencies are loaded
+        if (this::generalInfo.isInitialized && this::costInfo.isInitialized) {
+            Log.d(TAG, "Cost Info: $costInfo")
+            binding.usd = (generalInfo.balance * costInfo.priceUsd).currencyFormatShort("USD")
+            binding.btc = (generalInfo.balance * costInfo.priceBtc).currencyFormatShort("BTC")
+            binding.local = (generalInfo.balance * costInfo.priceGbp).currencyFormatShort("GBP")
+        }
+    }
+
+    private fun loadLimitStatus(info: GeneralData, account: GeneralData) {
+
+        val progress = (info.balance / account.payout * 100).toFloat()
+        binding.remaining.circleView.setValue(progress!!)
+        binding.remaining.circleView.setText(progress.round(2).toString())
     }
 
     companion object {

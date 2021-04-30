@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.cafrecode.citadel.databinding.ActivitySplashBinding
 import com.cafrecode.citadel.utils.SharedPrefsUtil
 
-private const val SPLASH_DELAY: Long = 3000 // 3 seconds
+private const val SPLASH_DELAY: Long = 1700 // 1.x seconds
 
 class SplashActivity : AppCompatActivity() {
 

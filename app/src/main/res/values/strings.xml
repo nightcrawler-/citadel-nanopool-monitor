@@ -8,5 +8,7 @@
     <string name="add_your_wallet_address_to_monitor_the_pool_performance">Add your wallet address to monitor the pool performance</string>
     <string name="proceed">Continue</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="mined">Mined</string>
+    <string name="_27_of_you_0_1_xmr_payout_limit_reached_you_will_reach_limit_in_2_days_approximately">27.% of you 0.1 XMR payout limit reached. You will reach limit in 2 days (approximately)</string>
 
 </resources>
