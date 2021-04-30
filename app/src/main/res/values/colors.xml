@@ -1,0 +1,43 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<resources>
+    <color name="primaryColor">@color/primary</color>
+    <color name="primaryLightColor">@color/primary_light</color>
+    <color name="primaryDarkColor">@color/primary_dark</color>
+    <color name="primaryTextColor">@color/primary_text</color>
+
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#E64A19</color>
+    <color name="primary_light">#FFCCBC</color>
+    <color name="accent">#9E9E9E</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <color name="colorAccent">@color/primaryColor</color>
+
+    <color name="saddleBrown">#5f3b0a</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="puertorico">#49bfab</color>
+
+    <color name="colorText">#17191D</color>
+    <color name="colorMute">#A3A9AF</color>
+
+    <color name="mercury">#e6e8ea</color>
+
+    <color name="border">#33ffffff</color> <!-- 20% white -->
+    <color name="mcLightGray">#4A4A4A</color>
+
+    <color name="almostWhite">#f7f7f7</color>
+    <!-- 20% black -->
+
+    <!-- Scrim colors -->
+    <color name="system_ui_scrim_light">#B3FFFFFF</color> <!-- 70% white -->
+    <!-- 25% black -->
+
+    <!-- We use a dark scrim by default since light status is API 23+ -->
+    <!-- We use a dark scrim by default since light nav bar is API 27+ -->
+    <color name="nav_bar_scrim">@color/system_ui_scrim_light</color>
+
+</resources>

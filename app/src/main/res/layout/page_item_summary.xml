@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="title"
+            type="java.lang.String" />
+
+        <variable
+            name="value"
+            type="java.lang.String" />
+
+        <variable
+            name="usd"
+            type="java.lang.String" />
+
+        <variable
+            name="btc"
+            type="java.lang.String" />
+
+        <variable
+            name="local"
+            type="java.lang.String" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_small"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect"
+            android:padding="@dimen/medium_margin">
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/medium_margin">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_monetization_on_24" />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/medium_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/mcLightGray"
+                    android:text='@{title}' />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_value"
+                android:layout_below="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_text"
+                android:text='@{value}' />
+
+            <LinearLayout
+                android:layout_below="@id/tv_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_usd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/mcLightGray"
+                    android:layout_marginRight="@dimen/small_margin"
+                    app:visibleGone='@{usd !=null &amp;&amp; usd.length() > 0}'
+                    android:text='@{usd}' />
+
+                <TextView
+                    app:visibleGone='@{btc !=null &amp;&amp; btc.length() > 0}'
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_btc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:textColor="@color/mcLightGray"
+                    android:text='@{btc}' />
+
+                <TextView
+                    app:visibleGone='@{local !=null &amp;&amp; local.length() > 0}'
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:textColor="@color/mcLightGray"
+                    android:text='@{local}' />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</layout>

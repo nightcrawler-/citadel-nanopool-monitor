@@ -1,0 +1,38 @@
+- [ ] QR code scan to first check account presence, secondly, log into account
+- [ ] Allow multiple accounts
+- [ ] Current balance, unconformed balance, in whatever currency - try use phone locale
+- [ ] Donate monero option to remove ads..*
+- [ ] Specify currency explicity? or go though all endpoints and try get a match?
+- [ ] Code name: Citadel, conve mvvm, with hilt. no local backing initially
+
+# Leg 1 ~ 2am
+[x] Home page -- empty - please add wallet by scanning or enter
+[x] QR code scan
+[x] Hit API - MVVM with repository and retrofit
+[x] Splash screen
+[x] Lottie empty placeholder
+
+# Initial Publish checklist
+[x] App icons
+[x] Theme colors
+[x] Splash screen
+[x] Format numbers - 6dp, fot one line
+[x] App name
+
+# Leg 2
+[ ] Refine home - different icons for each of three main, diff color tints
+[ ] Continuous scroll (who slcreen, no app bar)
+[ ] monero icon.animation at top to now where you are
+[ ] About screen with donation QR
+[ ] Dashboard, think about stats
+[x] Amount in usd - both balance and unconfirmed - in same container
+[ ] % of payout -- below the rounded rect with summary
+[ ] days/hours to payout*, bundled with the above
+[ ] banner ad
+Steps:
+- Get APIs for required data
+- Calculation on relevant objects
+- Binding Adapters - images, colors
+- Extensions/helpers
+- Refresh?
+

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "687367439459",
+    "project_id": "citadel-6e4e2",
+    "storage_bucket": "citadel-6e4e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687367439459:android:646089c9bc2c603b36a456",
+        "android_client_info": {
+          "package_name": "com.cafrecode.citadel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687367439459-nj3kgf7be30hbpv4k2iv6k8f95s6mipi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBANPENs8hx9nT0Bs9s2O4BCF-xDhiUcRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687367439459-nj3kgf7be30hbpv4k2iv6k8f95s6mipi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
