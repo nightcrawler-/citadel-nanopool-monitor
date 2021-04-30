@@ -12,9 +12,10 @@ import androidx.fragment.app.viewModels
 import com.cafrecode.citadel.databinding.FragmentHomeBinding
 import com.cafrecode.citadel.ui.QrScanActivity
 import com.cafrecode.citadel.utils.SharedPrefsUtil
+import com.cafrecode.citadel.vo.responses.core.ApiErrorResponse
 import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
-import com.cafrecode.citadel.vo.responses.core.balance
-import com.cafrecode.citadel.vo.responses.core.hashrate
+import com.cafrecode.citadel.vo.responses.core.currencyFormat
+import com.cafrecode.citadel.vo.responses.core.hashrateFormat
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -90,24 +91,16 @@ class HomeFragment : Fragment() {
         binding.empty.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
 
-        //Balance
-        viewModel.accountBalance(address).observe(viewLifecycleOwner, {
-            if (it is ApiSuccessResponse) {
-                binding.balance = it.body.balance()
-            }
-        })
+        // Load loading icon?
+        viewModel.generalInfo(address).observe(viewLifecycleOwner, {
 
-        //Hashrate
-        viewModel.currentHashrate(address).observe(viewLifecycleOwner, {
             if (it is ApiSuccessResponse) {
-                binding.hashrate = it.body.hashrate()
-            }
-        })
-
-        //Avg. Hashrate
-        viewModel.averageHashrate(address, 6).observe(viewLifecycleOwner, {
-            if (it is ApiSuccessResponse) {
-                binding.hashrate = it.body.hashrate()
+                //hide loading place holder
+                binding.balance = it.body.data.balance.currencyFormat()
+                binding.hashrate = it.body.data.hashrate.hashrateFormat()
+                binding.avgHashrate = it.body.data.avgHashrate.hashrateFormat()
+            } else if (it is ApiErrorResponse) {
+                Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
             }
         })
     }

@@ -24,5 +24,5 @@
 [ ] Continuous scroll (who slcreen, no app bar)
 [ ] monero icon.animation at top to now where you are
 [ ] About screen with donation QR
-[ ] Dashboard, thinka bout stats
+[ ] Dashboard, think about stats
 

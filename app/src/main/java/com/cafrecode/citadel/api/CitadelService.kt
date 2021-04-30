@@ -2,6 +2,8 @@ package com.cafrecode.citadel.api
 
 import androidx.lifecycle.LiveData
 import com.cafrecode.citadel.vo.responses.core.ApiResponse
+import com.cafrecode.citadel.vo.responses.core.GeneralData
+import com.cafrecode.citadel.vo.responses.core.GeneralResponse
 import com.cafrecode.citadel.vo.responses.core.GenericResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,4 +24,7 @@ interface CitadelService {
 
     @GET("hashrate/{address}")
     fun currentHashrate(@Path("address") address: String): LiveData<ApiResponse<GenericResponse>>
+
+    @GET("user/{address}")
+    fun generalInfo(@Path("address") address: String): LiveData<ApiResponse<GeneralResponse>>
 }
