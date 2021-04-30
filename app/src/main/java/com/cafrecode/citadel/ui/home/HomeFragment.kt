@@ -20,6 +20,12 @@ import com.cafrecode.citadel.vo.responses.core.currencyFormat
 import com.cafrecode.citadel.vo.responses.core.currencyFormatShort
 import com.cafrecode.citadel.vo.responses.core.hashrateFormat
 import com.cafrecode.citadel.vo.responses.core.round
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -158,6 +164,27 @@ class HomeFragment : Fragment() {
         val progress = (info.balance / account.payout * 100).toFloat()
         binding.remaining.circleView.setValue(progress!!)
         binding.remaining.circleView.setText(progress.round(2).toString())
+    }
+
+    private fun loadAds() {
+        val adLoader = AdLoader.Builder(requireActivity(), "ca-app-pub-3940256099942544/2247696110")
+            .forNativeAd { ad: NativeAd ->
+                // Show the ad.
+
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    // Handle the failure by logging, altering the UI, and so on.
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    // Methods in the NativeAdOptions.Builder class can be
+                    // used here to specify individual options settings.
+                    .build()
+            )
+            .build()
+        adLoader.loadAd(AdRequest.Builder().build())
     }
 
     companion object {
