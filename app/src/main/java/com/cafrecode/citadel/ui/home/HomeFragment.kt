@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.cafrecode.citadel.databinding.FragmentHomeBinding
 import com.cafrecode.citadel.ui.QrScanActivity
 import com.cafrecode.citadel.utils.SharedPrefsUtil
 import com.cafrecode.citadel.vo.responses.core.ApiErrorResponse
 import com.cafrecode.citadel.vo.responses.core.ApiSuccessResponse
+import com.cafrecode.citadel.vo.responses.core.GeneralData
 import com.cafrecode.citadel.vo.responses.core.currencyFormat
 import com.cafrecode.citadel.vo.responses.core.hashrateFormat
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +27,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel: HomeViewModel by viewModels()
+
+    //Instance concerns
+    private lateinit var generalInfo: GeneralData
+    private lateinit var costInfo: GeneralData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,14 +108,35 @@ class HomeFragment : Fragment() {
             binding.refresh.isRefreshing = false
 
             if (it is ApiSuccessResponse) {
-                binding.balance = it.body.data.balance.currencyFormat()
+                generalInfo = it.body.data
+                binding.balance = it.body.data.balance.currencyFormat("XMR")
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
-                binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat()
+                binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat("XMR")
+                loadCurrencies()
             } else if (it is ApiErrorResponse) {
                 Log.e(TAG, "Error: " + it.errorMessage)
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun loadCurrencies() {
+        viewModel.prices().observe(viewLifecycleOwner, Observer {
+            if (it is ApiSuccessResponse) {
+                costInfo = it.body.data
+                setCurrencies()
+            }
+        })
+    }
+
+    private fun setCurrencies() {
+        //Assumes both general info and currencies are loaded
+        if (this::generalInfo.isInitialized && this::costInfo.isInitialized) {
+            Log.d(TAG, "Cost Info: $costInfo")
+            binding.usd = (generalInfo.balance * costInfo.priceUsd).currencyFormat("USD")
+            binding.btc = (generalInfo.balance * costInfo.priceBtc).currencyFormat("BTC")
+            binding.local = (generalInfo.balance * costInfo.priceGbp).currencyFormat("GBP")
+        }
     }
 
     companion object {

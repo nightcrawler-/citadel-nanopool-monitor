@@ -13,6 +13,18 @@
         <variable
             name="unconfirmedBalance"
             type="java.lang.String" />
+
+        <variable
+            name="usd"
+            type="java.lang.String" />
+
+        <variable
+            name="btc"
+            type="java.lang.String" />
+
+        <variable
+            name="local"
+            type="java.lang.String" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,7 +54,10 @@
                     <include
                         layout="@layout/page_item_summary"
                         app:title='@{"Balance"}'
-                        app:value='@{balance}' />
+                        app:value='@{balance}'
+                        app:usd='@{usd}'
+                        app:btc='@{btc}'
+                        app:local='@{local}' />
 
                     <include
                         layout="@layout/page_item_summary"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,6 +10,18 @@
 
         <variable
             name="value"
+            type="java.lang.String" />
+
+        <variable
+            name="usd"
+            type="java.lang.String" />
+
+        <variable
+            name="btc"
+            type="java.lang.String" />
+
+        <variable
+            name="local"
             type="java.lang.String" />
 
     </data>
@@ -75,9 +87,11 @@
                     android:textStyle="bold"
                     android:textColor="@color/mcLightGray"
                     android:layout_marginRight="@dimen/small_margin"
-                    android:text='49.00 USD' />
+                    app:visibleGone='@{usd !=null &amp;&amp; usd.length() > 0}'
+                    android:text='@{usd}' />
 
                 <TextView
+                    app:visibleGone='@{btc !=null &amp;&amp; btc.length() > 0}'
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:background="@drawable/rounded_rect"
@@ -87,9 +101,10 @@
                     android:textStyle="bold"
                     android:layout_marginRight="@dimen/small_margin"
                     android:textColor="@color/mcLightGray"
-                    android:text='0.00300 BTC' />
+                    android:text='@{btc}' />
 
                 <TextView
+                    app:visibleGone='@{local !=null &amp;&amp; local.length() > 0}'
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:background="@drawable/rounded_rect"
@@ -98,9 +113,8 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginRight="@dimen/small_margin"
-
                     android:textColor="@color/mcLightGray"
-                    android:text='49.00 KES' />
+                    android:text='@{local}' />
             </LinearLayout>
 
 

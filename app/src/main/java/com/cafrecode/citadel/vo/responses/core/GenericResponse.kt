@@ -18,15 +18,14 @@ data class GeneralResponse(val status: Boolean, val data: GeneralData)
  */
 data class GeneralData(
     val balance: Double,
-    @SerializedName("unconfirmed_balance")
-    val unconfirmedBalance: Double,
+    @SerializedName("unconfirmed_balance") val unconfirmedBalance: Double,
     val hashrate: Double,
     //Include the other fields anyways, just so to have one main response data struct
-    val priceBtc: Double,
-    val priceUsd: Double,
-    val priceEur: Double,
-    val priceCny: Double,
-    val priceGbp: Double
+    @SerializedName("price_btc") val priceBtc: Double,
+    @SerializedName("price_usd") val priceUsd: Double,
+    @SerializedName("price_eur") val priceEur: Double,
+    @SerializedName("price_cny") val priceCny: Double,
+    @SerializedName("price_gbp") val priceGbp: Double
 )
 
 // Extension functions for Generic Response. Is this the right place? Seems like it. 'data' can be oe of the below mentioned depending on the endpoint hit
@@ -40,8 +39,8 @@ fun GenericResponse.hashrate(): String {
 }
 
 //TODO: Use locale or preset currency
-fun Double.currencyFormat(): String {
-    return String.format("%.6f XMR", this)
+fun Double.currencyFormat(symbol: String): String {
+    return String.format("%.6f %s", this, symbol)
 }
 
 fun Double.hashrateFormat(): String {
