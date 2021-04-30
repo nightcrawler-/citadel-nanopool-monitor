@@ -25,4 +25,13 @@
 [ ] monero icon.animation at top to now where you are
 [ ] About screen with donation QR
 [ ] Dashboard, think about stats
+[ ] Amount in usd - both balance and unconfirmed - in same container
+[ ] % of payout -- below the rounded rect with summary
+[ ] days/hours to payout*, bundled with the above
+Steps:
+- Get APIs for required data
+- Calculation on relevant objects
+- Binding Adapters - images, colors
+- Extentions/helpers
+- Refresh?
 

@@ -17,4 +17,6 @@ class CitadelRepository @Inject constructor(
     fun averageHashrate(address: String, hours: Int) = service.averageHashrate(address, hours)
 
     fun generalInfo(address: String) = service.generalInfo(address)
+
+    fun prices() = service.prices()
 }

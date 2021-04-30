@@ -20,4 +20,6 @@ class HomeViewModel @Inject constructor(private val repo: CitadelRepository) :
     fun averageHashrate(address: String, hours: Int) = repo.averageHashrate(address, hours)
 
     fun generalInfo(address: String) = repo.generalInfo(address)
+
+    fun prices() = repo.prices()
 }

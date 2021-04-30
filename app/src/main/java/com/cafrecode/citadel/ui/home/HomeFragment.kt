@@ -46,6 +46,11 @@ class HomeFragment : Fragment() {
             binding.empty.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
             loadStats(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
+            binding.refresh.isRefreshing = true
+        }
+
+        binding.refresh.setOnRefreshListener {
+            loadStats(SharedPrefsUtil.getDefaultAddress(requireActivity())!!)
         }
         return binding.root
     }
@@ -92,15 +97,11 @@ class HomeFragment : Fragment() {
         binding.empty.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
 
-        // Load loading icon?
-        binding.loading.visibility = View.VISIBLE
-        binding.results.visibility = View.GONE
-
         viewModel.generalInfo(address).observe(viewLifecycleOwner, {
 
+            binding.refresh.isRefreshing = false
+
             if (it is ApiSuccessResponse) {
-                //hide loading place holder
-                loadingSuccess()
                 binding.balance = it.body.data.balance.currencyFormat()
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
                 binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat()
@@ -109,11 +110,6 @@ class HomeFragment : Fragment() {
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
             }
         })
-    }
-
-    private fun loadingSuccess() {
-        binding.loading.visibility = View.GONE
-        binding.results.visibility = View.VISIBLE
     }
 
     companion object {
