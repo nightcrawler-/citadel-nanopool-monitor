@@ -11,7 +11,7 @@
             type="java.lang.String" />
 
         <variable
-            name="avgHashrate"
+            name="unconfirmedBalance"
             type="java.lang.String" />
     </data>
 
@@ -28,6 +28,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:padding="@dimen/padding_small"
                 android:visibility="gone"
                 android:id="@+id/content"
                 android:layout_width="match_parent"
@@ -58,13 +59,14 @@
 
                     <include
                         layout="@layout/page_item_summary"
-                        app:value='@{hashrate}'
-                        app:title='@{"Current Hashrate"}' />
+                        app:title='@{"Unconfirmed Balance"}'
+                        app:value='@{unconfirmedBalance}' />
 
                     <include
                         layout="@layout/page_item_summary"
-                        app:value='@{avgHashrate}'
-                        app:title='@{"Average Hashrate"}' />
+                        app:value='@{hashrate}'
+                        app:title='@{"Current Hashrate"}' />
+
                 </LinearLayout>
 
 

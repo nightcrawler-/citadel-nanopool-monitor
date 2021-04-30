@@ -12,9 +12,7 @@ data class GeneralData(
     val balance: Double,
     @SerializedName("unconfirmed_balance")
     val unconfirmedBalance: Double,
-    val hashrate: Double,
-    @SerializedName("avghashrate")
-    val avgHashrate: Double
+    val hashrate: Double
 )
 
 // Extension functions for Generic Response. Is this the right place? Seems like it. 'data' can be oe of the below mentioned depending on the endpoint hit

@@ -103,8 +103,9 @@ class HomeFragment : Fragment() {
                 loadingSuccess()
                 binding.balance = it.body.data.balance.currencyFormat()
                 binding.hashrate = it.body.data.hashrate.hashrateFormat()
-                binding.avgHashrate = it.body.data.avgHashrate.hashrateFormat()
+                binding.unconfirmedBalance = it.body.data.unconfirmedBalance.currencyFormat()
             } else if (it is ApiErrorResponse) {
+                Log.e(TAG, "Error: " + it.errorMessage)
                 Snackbar.make(binding.root, "Unable to fetch data", Snackbar.LENGTH_LONG).show()
             }
         })
