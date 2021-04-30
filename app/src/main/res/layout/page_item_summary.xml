@@ -51,11 +51,59 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_value"
                 android:layout_below="@+id/header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/large_text"
                 android:text='@{value}' />
+
+            <LinearLayout
+                android:layout_below="@id/tv_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_usd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/mcLightGray"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:text='49.00 USD' />
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_btc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+                    android:textColor="@color/mcLightGray"
+                    android:text='0.00300 BTC' />
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/rounded_rect"
+                    android:id="@+id/tv_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginRight="@dimen/small_margin"
+
+                    android:textColor="@color/mcLightGray"
+                    android:text='49.00 KES' />
+            </LinearLayout>
+
+
         </RelativeLayout>
 
     </LinearLayout>
