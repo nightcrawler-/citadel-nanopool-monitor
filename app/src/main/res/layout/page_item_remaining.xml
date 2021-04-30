@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
+        android:padding="@dimen/small_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <com.cafrecode.views.circurlarpercent.CircleProgressView
             android:id="@+id/circleView"
             android:layout_width="100dp"
