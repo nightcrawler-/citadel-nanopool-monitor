@@ -25,6 +25,10 @@
         <variable
             name="local"
             type="java.lang.String" />
+
+        <variable
+            name="comment"
+            type="java.lang.String" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:tools="http://schemas.android.com/tools"
@@ -62,6 +66,7 @@
                         android:layout_marginTop="@dimen/medium_margin"
                         android:layout_marginBottom="@dimen/medium_margin"
                         android:id="@+id/remaining"
+                        app:comment='@{comment}'
                         layout="@layout/page_item_remaining"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent" />
@@ -70,6 +75,11 @@
                         layout="@layout/page_item_summary"
                         app:title='@{"Unconfirmed Balance"}'
                         app:value='@{unconfirmedBalance}' />
+
+                    <include
+                        layout="@layout/page_item_summary"
+                        app:title='@{"Hashrate"}'
+                        app:value='@{hashrate}' />
 
                 </LinearLayout>
 

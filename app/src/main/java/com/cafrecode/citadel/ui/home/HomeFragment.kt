@@ -164,6 +164,9 @@ class HomeFragment : Fragment() {
         val progress = (info.balance / account.payout * 100).toFloat()
         binding.remaining.circleView.setValue(progress!!)
         binding.remaining.circleView.setText(progress.round(2).toString())
+
+        binding.comment = progress.round(1)
+            .toString() + "% of your " + account.payout + " XMR limit reached. You will reach your limit in x days (approximately"
     }
 
     private fun loadAds() {

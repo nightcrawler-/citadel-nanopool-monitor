@@ -28,6 +28,7 @@
 [x] Amount in usd - both balance and unconfirmed - in same container
 [ ] % of payout -- below the rounded rect with summary
 [ ] days/hours to payout*, bundled with the above
+[ ] calculation * avg
 [ ] banner ad
 Steps:
 - Get APIs for required data
@@ -35,4 +36,12 @@ Steps:
 - Binding Adapters - images, colors
 - Extensions/helpers
 - Refresh?
+
+## monuitoring app:
+- [ ] Background refresg every so often
+- Notify when big jumps happen
+- View workers proper with clear info
+- KES/Local currency
+- Notify on payments
+- Next payment calculator
 

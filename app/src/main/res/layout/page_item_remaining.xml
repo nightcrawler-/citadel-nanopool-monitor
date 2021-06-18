@@ -3,10 +3,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="comment"
+            type="java.lang.String" />
+    </data>
+
     <RelativeLayout
         android:padding="@dimen/small_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.cafrecode.views.circurlarpercent.CircleProgressView
             android:id="@+id/circleView"
             android:layout_width="100dp"
@@ -41,12 +49,11 @@
 
         <TextView
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/medium_margin"
-            android:layout_toRightOf="@id/circleView"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_toEndOf="@id/circleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_27_of_you_0_1_xmr_payout_limit_reached_you_will_reach_limit_in_2_days_approximately" />
-
+            android:text='@{comment}' />
     </RelativeLayout>
 
 </layout>
